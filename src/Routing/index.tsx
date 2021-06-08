@@ -6,7 +6,6 @@ import {
   Route,
 } from "react-router-dom";
 import routes from "../config/routes";
-import { Home } from "../Pages/Home";
 interface RouteProps {}
 
 export const Routing: React.FC<RouteProps> = () => {
@@ -21,7 +20,11 @@ export const Routing: React.FC<RouteProps> = () => {
                 path={route.path}
                 exact={route.exact}
                 render={(props: RouteComponentProps<any>) => (
-                  <route.component {...props} {...route.props} />
+                  <route.component
+                    name={route.name}
+                    {...props}
+                    {...route.props}
+                  />
                 )}
               />
             );
