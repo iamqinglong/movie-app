@@ -1,8 +1,7 @@
 import React from "react";
+import IPage from "../../interfaces/page";
 
-interface HomeProps {}
-
-export const Home: React.FC<HomeProps> = () => {
+export const Home: React.FC<IPage> = () => {
   return (
     <>
       <div>
