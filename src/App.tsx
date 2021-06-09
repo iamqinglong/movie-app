@@ -1,9 +1,18 @@
 import React from "react";
 import "./App.css";
 import { Routing } from "./Routing";
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
-  return <Routing />;
-}
+interface AppProps {}
+
+export const App: React.FC<AppProps> = () => {
+  return (
+    <>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+    </>
+  );
+};
 
 export default App;
