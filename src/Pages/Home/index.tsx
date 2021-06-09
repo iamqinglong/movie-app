@@ -46,10 +46,7 @@ export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
             <p className="text-4xl font-bold text-gray-800 mb-4">Movies</p>
           </div>
           <div className="text-end">
-            <form
-              className="flex w-full max-w-sm space-x-4"
-              // onSubmit={searchHandler}
-            >
+            <form className="flex w-full max-w-sm space-x-4">
               <div className=" relative ">
                 <input
                   onChange={(event) => setQuery(event.target.value)}
@@ -62,7 +59,7 @@ export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
             </form>
           </div>
         </div>
-        {movieList && <MovieList movies={movieList} />}
+        <MovieList movies={movieList || []} />
       </div>
     </>
   );
