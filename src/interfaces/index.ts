@@ -1,3 +1,9 @@
+export interface HomeMatchParams {}
+
+export interface FavoriteMatchParams {}
+export interface MovieDetailMatchParams {
+  id: string;
+}
 export interface MovieResults {
   page: number;
   results: Movie[];

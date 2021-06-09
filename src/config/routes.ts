@@ -1,5 +1,5 @@
 import IRoute from "../interfaces/route";
-import { Favorites } from "../Pages/Favorites";
+import { Favorite } from "../Pages/Favorite";
 import { Home } from "../Pages/Home";
 import { MovieDetail } from "../Pages/MovieDetail";
 
@@ -19,7 +19,7 @@ const routes: IRoute[] = [
   {
     path: "/favorites",
     name: "Favorites Page",
-    component: Favorites,
+    component: Favorite,
     exact: true,
   },
   // {

@@ -1,11 +1,10 @@
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { FavoriteMatchParams } from "../../interfaces";
 import IPage from "../../interfaces/page";
 
-interface FavoriteRouteProps {}
-
-export const Favorites: React.FC<
-  IPage & RouteComponentProps<FavoriteRouteProps>
+export const Favorite: React.FC<
+  IPage & RouteComponentProps<FavoriteMatchParams>
 > = ({ name }) => {
   return (
     <>

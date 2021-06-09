@@ -3,13 +3,12 @@ import { RouteComponentProps } from "react-router-dom";
 import { MovieList } from "../../components/MovieList";
 import { useMovies, useSearchMovies } from "../../config/hooks";
 import logging from "../../config/logging";
-import { Movie } from "../../interfaces";
+import { HomeMatchParams, Movie } from "../../interfaces";
 import IPage from "../../interfaces/page";
 import { useState as useHookstate } from "@hookstate/core";
 import store from "../../config/store";
-interface MatchParams {}
 
-export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
+export const Home: React.FC<IPage & RouteComponentProps<HomeMatchParams>> = ({
   name,
 }) => {
   const { movies } = useMovies();

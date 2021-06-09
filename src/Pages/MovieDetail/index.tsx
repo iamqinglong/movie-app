@@ -1,14 +1,11 @@
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { useMovieDetail } from "../../config/hooks";
+import { MovieDetailMatchParams } from "../../interfaces";
 import IPage from "../../interfaces/page";
 
-interface MovieDetailRouteParams {
-  id: string;
-}
-
 export const MovieDetail: React.FC<
-  IPage & RouteComponentProps<MovieDetailRouteParams>
+  IPage & RouteComponentProps<MovieDetailMatchParams>
 > = ({ match }) => {
   const { details } = useMovieDetail(match.params.id);
 
