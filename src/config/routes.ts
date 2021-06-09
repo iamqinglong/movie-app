@@ -1,5 +1,6 @@
 import IRoute from "../interfaces/route";
 import { Home } from "../Pages/Home";
+import { MovieDetail } from "../Pages/MovieDetail";
 
 const routes: IRoute[] = [
   {
@@ -8,12 +9,12 @@ const routes: IRoute[] = [
     component: Home,
     exact: true,
   },
-  // {
-  //   path: "/about",
-  //   name: "About Page",
-  //   component: AboutPage,
-  //   exact: true,
-  // },
+  {
+    path: "/movie/:id",
+    name: "Movie Details Page",
+    component: MovieDetail,
+    exact: true,
+  },
   // {
   //   path: "/about/:number",
   //   name: "About Page",
