@@ -24,11 +24,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   const isFavorite = favorites
     .get()
     .findIndex((favorites) => favorites.id === id);
-  console.log("isFavorite", isFavorite);
   const addToFavoriteHandler: React.FormEventHandler<HTMLButtonElement> = (
     event
   ) => {
-    console.log("Adding");
     event.preventDefault();
     const favorite = {
       id,
@@ -44,7 +42,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   const removeToFavorite: React.FormEventHandler<HTMLButtonElement> = (
     event
   ) => {
-    console.log("Removing");
     event.preventDefault();
     favorites[isFavorite].set(none);
   };
