@@ -5,7 +5,8 @@ import { useMovies, useSearchMovies } from "../../config/hooks";
 import logging from "../../config/logging";
 import { Movie } from "../../interfaces";
 import IPage from "../../interfaces/page";
-
+import { useState as useHookstate } from "@hookstate/core";
+import store from "../../config/store";
 interface MatchParams {}
 
 export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
@@ -15,11 +16,13 @@ export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
   const [query, setQuery] = useState("");
   const { movies: searchMovies } = useSearchMovies(query);
   const [movieList, setMovieList] = useState<Movie[]>();
+  const { favorites } = useHookstate(store);
+
   useEffect(() => {
     logging.info(`[${name}] Loading`);
   }, [name]);
+
   useEffect(() => {
-    console.log(movies?.results);
     if (movies?.results) {
       setMovieList(movies?.results);
     }
@@ -29,10 +32,12 @@ export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
     }
   }, [movies, searchMovies]);
 
-  // const searchHandler: React.FormEventHandler<HTMLFormElement> = (event) => {
-  //   event.preventDefault();
-  //   mutate();
-  // };
+  useEffect(() => {
+    if (favorites.length) {
+      favorites.get().map((fav) => console.log("fav.id", fav.id));
+    }
+  }, [favorites]);
+
   return (
     <>
       <div className="w-full bg-white p-12">
@@ -54,12 +59,6 @@ export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
                   placeholder="Search here..."
                 />
               </div>
-              {/* <button
-                className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200"
-                type="submit"
-              >
-                Search
-              </button> */}
             </form>
           </div>
         </div>

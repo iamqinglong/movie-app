@@ -1,4 +1,5 @@
 import IRoute from "../interfaces/route";
+import { Favorites } from "../Pages/Favorites";
 import { Home } from "../Pages/Home";
 import { MovieDetail } from "../Pages/MovieDetail";
 
@@ -13,6 +14,12 @@ const routes: IRoute[] = [
     path: "/movie/:id",
     name: "Movie Details Page",
     component: MovieDetail,
+    exact: true,
+  },
+  {
+    path: "/favorites",
+    name: "Favorites Page",
+    component: Favorites,
     exact: true,
   },
   // {
