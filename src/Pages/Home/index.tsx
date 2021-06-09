@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import useSWR from "swr";
 import { MovieCard } from "../../components/MovieCard";
+import fetch from "../../config/fetch";
 import logging from "../../config/logging";
 import IPage from "../../interfaces/page";
 
@@ -9,6 +11,11 @@ interface MatchParams {}
 export const Home: React.FC<IPage & RouteComponentProps<MatchParams>> = ({
   name,
 }) => {
+  const { data } = useSWR<string[]>(
+    "https://api.themoviedb.org/3/search/movie?api_key=8a1b36d62eb27c6b8c84a8545d209e70&query=t",
+    fetch
+  );
+  console.log(data);
   useEffect(() => {
     logging.info(`[${name}] Loading`);
   }, [name]);
