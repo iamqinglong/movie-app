@@ -1,15 +1,18 @@
 import React, { FC } from "react";
+import { useHookstate } from "@hookstate/core";
 import { Link, useLocation } from "react-router-dom";
+import store from "../../config/store";
 
 interface NavProps {
-  setQuery?: React.Dispatch<React.SetStateAction<string>>;
+  // setQuery?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Nav: FC<NavProps> = ({ setQuery }) => {
+export const Nav: FC<NavProps> = () => {
   const location = useLocation();
+  const { searchQuery } = useHookstate(store);
   return (
     <>
-      <div>
+      <header>
         <nav className="bg-black dark:bg-gray-800  shadow py-4 ">
           <div className="max-w-7xl mx-auto px-8">
             <div className="flex items-center justify-between h-16">
@@ -31,7 +34,7 @@ export const Nav: FC<NavProps> = ({ setQuery }) => {
                   </div>
                 </div>
               </div>
-              {location.pathname === "/" && setQuery && (
+              {location.pathname === "/" && (
                 <div className="block">
                   <div className="md:block -mr-2 flex">
                     <form
@@ -42,7 +45,9 @@ export const Nav: FC<NavProps> = ({ setQuery }) => {
                     >
                       <div className=" relative ">
                         <input
-                          onChange={(event) => setQuery(event.target.value)}
+                          onChange={(event) =>
+                            searchQuery.set(event.target.value)
+                          }
                           type="text"
                           id='"form-subscribe-Search'
                           className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -87,7 +92,7 @@ export const Nav: FC<NavProps> = ({ setQuery }) => {
             </div>
           </div>
         </nav>
-      </div>
+      </header>
     </>
   );
 };

@@ -5,14 +5,18 @@ import { useMovies, useSearchMovies } from "../../config/hooks";
 import logging from "../../config/logging";
 import { HomeMatchParams, Movie } from "../../interfaces";
 import IPage from "../../interfaces/page";
-import { Nav } from "../../components/Nav";
+// import { Nav } from "../../components/Nav";
+import { Layout } from "../../components/Layout";
+import store from "../../config/store";
+import { useHookstate } from "@hookstate/core";
 
 export const Home: React.FC<IPage & RouteComponentProps<HomeMatchParams>> = ({
   name,
 }) => {
   const { movies } = useMovies();
-  const [query, setQuery] = useState("");
-  const { movies: searchMovies } = useSearchMovies(query);
+  // const [query, setQuery] = useState("");
+  const { searchQuery } = useHookstate(store);
+  const { movies: searchMovies } = useSearchMovies(searchQuery.get());
   const [movieList, setMovieList] = useState<Movie[]>();
 
   useEffect(() => {
@@ -31,10 +35,12 @@ export const Home: React.FC<IPage & RouteComponentProps<HomeMatchParams>> = ({
 
   return (
     <>
-      <Nav setQuery={setQuery} />
-      <div className="w-full bg-white p-12">
-        <MovieList movies={movieList || []} />
-      </div>
+      {/* <Nav setQuery={setQuery} /> */}
+      <Layout>
+        <div className="w-full bg-white p-12">
+          <MovieList movies={movieList || []} />
+        </div>
+      </Layout>
     </>
   );
 };
